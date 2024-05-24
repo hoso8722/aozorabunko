@@ -5,7 +5,7 @@ describe('Author', () => {
   // 正常系
   it('1文字以上５０文字以内は正常', () => {
     const name = '夏目漱石';
-    expect(() => new Author(name)).not.toThrow();
+    expect(new Author(name).value).toBe('夏目漱石');
   });
 
   // 異常系
