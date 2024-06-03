@@ -17,7 +17,7 @@ export class Published extends ValueObject<PublishedDate, 'Published'> {
         `文字数は${Published.FIXED_LENGTH}文字でなければならない`
       )
     }
-    if (!Published.REGEXP.test(value)) {
+    if (Published.REGEXP.test(value) === false) {
       throw new Error(
         `日付は[YYYY/MM/DD]のフォーマットに一致なければならない`
       )
