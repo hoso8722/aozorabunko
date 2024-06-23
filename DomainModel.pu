@@ -1,0 +1,64 @@
+@startuml
+package "User Aggregate" {
+    class User {
+        +userId: String
+        +name: String
+        +email: String
+        +password: String
+        +phoneNumber: String
+    }
+
+}
+
+package "Bookshelf Aggregate" {
+    class Bookshelf {
+        +bookshelfId: String
+        +name: String
+        +user: User
+    }
+
+    class BookshelfBook {
+        +bookshelfBookId: String
+        +bookshelf: Bookshelf
+        +book: Book
+        +bookmark: Bookmark
+    }
+
+    class Bookmark {
+        +bookmarkId: String
+        +bookshelfBook: BookshelfBook
+        +pageNumber: Integer
+        +comment: String
+    }
+    User "1" -- "0..*" Bookshelf : owns
+
+    Bookshelf "1" -- "0..*" BookshelfBook : owns
+    BookshelfBook "1" -- "0..*" Bookmark : owns
+}
+
+package "Book Aggregate" {
+    class Book {
+        +bookId: String
+        +title: String
+        +author: String
+        +price: Decimal
+        +publicationDate: Date
+        +tags: List<Tag>
+    }
+
+    class Tag {
+        +name: String
+    }
+
+    class Stock {
+        +stockId: String
+        +book: Book
+        +quantity: Integer
+        +status: Enum
+    }
+
+    Book "0..*" -- "0..*" Tag : has
+    Book "1" -- "1" Stock : contains
+    Book "0..*" -- "0..*" BookshelfBook : has
+}
+@enduml

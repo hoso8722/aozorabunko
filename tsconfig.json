@@ -30,10 +30,20 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",
     "paths": {
       "@/*": [
         "./*"
-      ]
+      ],
+      "@models/*": [
+        "./Domain/models/*"
+      ],
+      "@ValueObject": [
+        "./Domain/models/shared/ValueObject"
+      ],
+      "@Entity": [
+        "./Domain/models/shared/Entity"
+      ],
     },
     "types": [
       "@cloudflare/workers-types/2023-07-01"

@@ -1,4 +1,4 @@
-import { ValueObject } from "../../shared/ValueObject"
+import { ValueObject } from "Domain/models/shared/ValueObject~"
 type AuthorValue = string
 
 export class Author extends ValueObject<AuthorValue, 'Title'> {

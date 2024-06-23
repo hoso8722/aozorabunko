@@ -1,4 +1,4 @@
-import { ValueObject } from "../../shared/ValueObject";
+import { ValueObject } from "../../shared/ValueObject~";
 import { uuidv7 as uuid7 } from "uuidv7";
 
 type BookIdValue = string
