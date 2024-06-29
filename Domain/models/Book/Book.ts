@@ -13,8 +13,8 @@ class Book extends Entity {
   private _publishDate?: PublishDate;
   private _tags?: Tag[];
 
-  constructor(id: string, title: Title, author: Author, price: Price, publishDate?: PublishDate, tags?: Tag[]) {
-    super(id);
+  constructor(book_id: string, title: Title, author: Author, price: Price, publishDate?: PublishDate, tags?: Tag[]) {
+    super(book_id);
     this._title = title;
     this._author = author;
     this._price = price;
@@ -24,14 +24,14 @@ class Book extends Entity {
 
   static async registerBook(
     bookRepository: IBookRepository,
-    id: string,
+    book_id: string,
     title: Title,
     author: Author,
     price: Price,
     publishDate?: PublishDate,
     tags?: Tag[]
   ): Promise<void> {
-    const book = new Book(id, title, author, price, publishDate, tags);
+    const book = new Book(book_id, title, author, price, publishDate, tags);
     await bookRepository.save(book);
   }
 

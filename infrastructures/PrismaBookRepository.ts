@@ -5,7 +5,7 @@ import { Title } from '@models/Book/Title';
 import { Author } from '@models/Book/Author';
 import { Price } from '@models/Book/Price';
 import { PublishDate } from '@models/Book/PublishDate';
-
+import { Tag } from '@models/Book/Tag'
 class PrismaBookRepository implements IBookRepository {
   private prisma: PrismaClient;
 
@@ -21,6 +21,7 @@ class PrismaBookRepository implements IBookRepository {
         author: book.author.value,
         price: book.price.value,
         publishDate: book.publishDate ? book.publishDate.value : null,
+        tags: book.tags ? book.tags.values : null
       },
     });
   }
