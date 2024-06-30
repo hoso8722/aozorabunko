@@ -29,16 +29,27 @@ datasource db {
 // }
 
 model Book {
-  book_id     String @id @unique
+  bookId     String @id @unique
   title       String
   author      String
   price       Int
   publishDate String
-  tags        Tag[]
+  tags        TagsOnBooks[]
 }
 
 model Tag {
-  tag_id String @id @unique
-  tag    String
-  Books  Book[]
+  tagId      String @id @unique
+  name       String
+  Books      TagsOnBooks[]
+}
+
+model TagsOnBooks {
+  book       Book     @relation(fields: [bookId], references: [bookId])
+  bookId     String // relation scalar field (used in the `@relation` attribute above)
+  tag        Tag @relation(fields: [tagId], references: [tagId])
+  tagId      String // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([bookId, tagId])
 }
