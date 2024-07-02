@@ -29,7 +29,8 @@ datasource db {
 // }
 
 model Book {
-  bookId     String @id @unique
+  id          Int           @id @default(autoincrement())
+  bookId      String        @default(uuid())
   title       String
   author      String
   price       Int
@@ -38,16 +39,17 @@ model Book {
 }
 
 model Tag {
-  tagId      String @id @unique
-  name       String
-  Books      TagsOnBooks[]
+  id    Int           @id @default(autoincrement())
+  tagId String        @default(uuid())
+  name  String
+  Books TagsOnBooks[]
 }
 
 model TagsOnBooks {
-  book       Book     @relation(fields: [bookId], references: [bookId])
-  bookId     String // relation scalar field (used in the `@relation` attribute above)
-  tag        Tag @relation(fields: [tagId], references: [tagId])
-  tagId      String // relation scalar field (used in the `@relation` attribute above)
+  book       Book     @relation(fields: [bookId], references: [id])
+  bookId     Int // relation scalar field (used in the `@relation` attribute above)
+  tag        Tag      @relation(fields: [tagId], references: [id])
+  tagId      Int // relation scalar field (used in the `@relation` attribute above)
   assignedAt DateTime @default(now())
   assignedBy String
 
