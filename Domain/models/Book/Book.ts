@@ -1,4 +1,5 @@
 import { Entity } from '@Entity';
+import { BookId } from '@models/Book/BookId';
 import { Title } from '@models/Book/Title';
 import { Author } from '@models/Book/Author';
 import { Price } from '@models/Book/Price';
@@ -13,8 +14,11 @@ class Book extends Entity {
   private _publishDate?: PublishDate;
   private _tags?: Tag[];
 
-  constructor(book_id: string, title: Title, author: Author, price: Price, publishDate?: PublishDate, tags?: Tag[]) {
-    super(book_id);
+  // bookId: BookId;
+
+  constructor(title: Title, author: Author, price: Price, publishDate?: PublishDate, tags?: Tag[]) {
+    super(new BookId().value);
+    // this.bookId = new BookId()
     this._title = title;
     this._author = author;
     this._price = price;
@@ -24,14 +28,13 @@ class Book extends Entity {
 
   static async registerBook(
     bookRepository: IBookRepository,
-    book_id: string,
     title: Title,
     author: Author,
     price: Price,
     publishDate?: PublishDate,
     tags?: Tag[]
   ): Promise<void> {
-    const book = new Book(book_id, title, author, price, publishDate, tags);
+    const book = new Book(title, author, price, publishDate, tags);
     await bookRepository.save(book);
   }
 

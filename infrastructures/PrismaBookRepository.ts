@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { IBookRepository } from '@models/Book/IBookRepository';
 import { Book } from '@models/Book/Book';
+import { BookId } from '@models/Book/BookId'
 import { Title } from '@models/Book/Title';
 import { Author } from '@models/Book/Author';
 import { Price } from '@models/Book/Price';
@@ -16,7 +17,7 @@ class PrismaBookRepository implements IBookRepository {
   async save(book: Book): Promise<void> {
     await this.prisma.book.create({
       data: {
-        id: book.id,
+        bookId: book.id,
         title: book.title.value,
         author: book.author.value,
         price: book.price.value,
@@ -33,13 +34,7 @@ class PrismaBookRepository implements IBookRepository {
 
     if (!book) return null;
 
-    return new Book(
-      book.id,
-      new Title(book.title),
-      new Author(book.author),
-      new Price(book.price),
-      book.publishDate ? new PublishDate(book.publishDate) : undefined
-    );
+    return null;
   }
 }
 
