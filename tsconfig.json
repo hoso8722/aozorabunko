@@ -3,7 +3,6 @@
     "require": [
       "tsconfig-paths/register"
     ]
-    // ts-nodeがtsconfigのpathsを解決できるようにします。
   },
   "compilerOptions": {
     "lib": [
@@ -43,7 +42,7 @@
       ],
       "@Entity": [
         "./Domain/models/shared/Entity"
-      ],
+      ]
     },
     "types": [
       "@cloudflare/workers-types/2023-07-01"
