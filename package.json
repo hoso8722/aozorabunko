@@ -16,6 +16,7 @@
     "@prisma/adapter-d1": "^5.15.1",
     "@prisma/client": "^5.16.1",
     "@types/lodash": "^4.17.4",
+    "axios": "^1.7.2",
     "date-fns": "^3.6.0",
     "lodash": "^4.17.21",
     "next": "^14.2.3",

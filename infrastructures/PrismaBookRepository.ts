@@ -21,15 +21,16 @@ class PrismaBookRepository implements IBookRepository {
         title: book.title.value,
         author: book.author.value,
         price: book.price.value,
-        publishDate: book.publishDate ? book.publishDate.value : null,
-        tags: book.tags ? book.tags.values : null
+        publishDate: book.publishDate ? book.publishDate.value.toISOString() : new Date().toISOString(),
+        // tags: book.tags ? book.tags.values.toString : new Array().values,
+        tags: book.tags?.values.arguments
       },
     });
   }
 
-  async findById(id: string): Promise<Book | null> {
+  async findById(bookId: string): Promise<Book | null> {
     const book = await this.prisma.book.findUnique({
-      where: { id },
+      where: { bookId },
     });
 
     if (!book) return null;
